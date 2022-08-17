@@ -1,0 +1,61 @@
+3.1
+
+1.
+static public Node FromNumber(int value){
+        return new Node(value);
+    }
+//статический метод-фабрика FromNumber, аргумент номер экземпляра;
+
+    private Node(int _value) {
+        value = _value;
+        next = null;
+    }
+// приватный конструктор класса Node
+
+Node paint = Node.FromNumber(2);
+// объект класса Node создается с помощью статического метода FromNumber,
+// возвращающего объект Node со значением аргумента метода;
+
+2.
+   static public OrderedList FromOrderSort(boolean ascending){
+        return new OrderedList(ascending);
+    }
+//статический метод-фабрика FromOrderSor, аргумент флаг признака для сортировки;
+
+    private OrderedList(boolean asc) {
+        head = null;
+        tail = null;
+        _ascending = asc;
+    }
+// приватный конструктор класса OrderedList
+
+OrderedList<Integer> orderedList = OrderedList.FromOrderSort(true);
+// объект класса OrderedList создается с помощью статического метода FromOrderSort,
+// возвращающего объект класса OrderedList со значением аргумента метода;
+
+3.
+    static public HashTable FromSizeStep(int sz, int stp){
+        return new HashTable(sz, stp);
+    }
+//статический метод-фабрика FromSizeStep, аргументы размер и шаг8; 
+
+    private HashTable(int sz, int stp) {
+        size = sz;
+        step = stp;
+        slots = new String[size];
+        for (int i = 0; i < size; i++) slots[i] = null;
+    }
+// приватный конструктор класса HashTable
+
+HashTable hashTable = HashTable.FromSizeStep(19,3);
+// объект класса HashTable создается с помощью статического метода FromSizeStep,
+// возвращающего объект класса HashTable со значением аргумента метода;
+
+
+3.2
+interface List - interface ListFactory;
+// интерфейс связного списка;
+
+interface Queue - interface QueueFactory;
+// интерфейс очереди.
+
