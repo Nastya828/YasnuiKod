@@ -1,0 +1,253 @@
+1.
+     int n = index;
+        do {
+            if (this.slots[n] == null) {
+                return n;
+            }
+            if (n <= (this.slots.length - 1) - this.step) {
+                n += this.step;
+            } else {
+                n = index % this.step;
+            }
+        } while (n != index);
+
+// после цикла n больше не используется, присвоим -1:
+	int n = -1;
+
+2.
+
+   Node<T> node = this.head;
+        while (node != null) {
+            Node<T> n1 = node.next;
+            node.next = null;
+            node = n1;
+        }
+// после окончания цикла node не используется, присвоим null:
+	node = null;
+
+3.
+
+ Node<T> node = this.head;
+if (this._ascending) {
+    setOrderElements(node, value);
+} else {
+    setElements(node, value);
+}
+// после окончания цикла node не используется, присвоим null:
+node = null;
+
+4.
+ 	int counter = 0;
+        Node node = this.head;
+        if (node == null) {
+            return 0;
+        }
+        while (node != null) {
+            counter++;
+            node = node.next;
+        }
+
+// переменная counter объявлена раньше, чем нужно, перенесем объявление ближе к использованию:
+
+        Node node = this.head;
+        if (node == null) {
+            return 0;
+        }
+	int counter = 0;
+        while (node != null) {
+            counter++;
+            node = node.next;
+        }
+
+5.
+
+class NativeDictionary<T> {
+    public int size;
+    public String[] slots;
+    public int step = 3;
+    public T[] values;
+
+    public NativeDictionary(int sz, Class clazz) {
+        size = sz;
+        slots = new String[size];
+        values = (T[]) Array.newInstance(clazz, this.size);
+    }
+
+// переменная step должна быть проинициализирована в конструкторе как константа:
+
+ class NativeDictionary<T> {
+    public int size;
+    public String[] slots;
+    final public int step;
+    public T[] values;
+
+    public NativeDictionary(int sz, Class clazz) {
+        size = sz;
+        slots = new String[size];
+        values = (T[]) Array.newInstance(clazz, this.size);
+        step = 3;
+    }
+
+6.
+
+int s = search();
+// добавим после вызова функции поиска элемента assert, предупреждающий о не найденном элементе: 
+assert s != -1 : "Element doesn't exist!";
+
+7.
+
+// добавим до вызова функции поиска элемента assert, предупреждающий о недопустимом результате: 
+assert find(key) < Integer.MAX_VALUE: " find(key) > Integer.MAX_VALUE";
+int t = find(key);
+
+8. 
+
+int index = seekSlot(value);
+// добавим после вызова функции поиска слота assert, предупреждающий о неверном индексе:
+assert index != 0 && index != 1 : " slot is wrong!";
+
+9.
+
+if (this.slots[n] != null && this.slots[n].equals(value)) {
+    	return n;
+}
+
+// добавим перед return проверку на -1:
+if (this.slots[n] != null && this.slots[n].equals(value)) {
+	assert n != -1;
+    	return n;
+}
+
+10.
+
+public class PowerSet {
+    List<String> powerSet;
+    final public int capacity = 15;
+
+// переменная capacity должна быть проинициализирована в конструкторе:
+
+public class PowerSet {
+    List<String> powerSet;
+    final public int capacity;
+
+    public PowerSet() {
+        capacity = 15;
+        this.powerSet = new ArrayList<>(capacity);
+    }
+
+11.
+
+ public int size() {
+        return this.powerSet.size();
+}
+
+// добавим перед return проверку на отрицательный размер множества:
+ public int size() {
+        assert this.powerSet.size() >= 0: "Negative size!"; 
+        return this.powerSet.size();
+
+}
+
+12.
+
+public class NativeCache<T> {
+    public int size;
+    public String[] slots;
+    public int step = 3;
+    public T[] values;
+    public int[] hits;
+
+    public NativeCache(int sz, Class clazz) {
+        size = sz;
+        slots = new String[size];
+        values = (T[]) Array.newInstance(clazz, this.size);
+        hits = new int[size];
+    }
+
+// переменная step должна быть проинициализирована в конструкторе как константа:
+
+public class NativeCache<T> {
+    public int size;
+    public String[] slots;
+    public T[] values;
+    public int[] hits;
+
+    final int step;
+
+    public NativeCache(int sz, Class clazz) {
+        step = 3;
+        size = sz;
+        slots = new String[size];
+        values = (T[]) Array.newInstance(clazz, this.size);
+        hits = new int[size];
+    }
+
+13.
+
+private int delete() {
+        int index = 1;
+        int min = this.hits[1];
+        for (int i = 1; i < this.hits.length; i++) {
+            if (min > this.hits[i]) {
+                index = i;
+                min = this.hits[i];
+            }
+        }
+        return index;
+    }
+
+
+// добавим перед return проверку на отрицательный индекс:
+
+private int delete() {
+        int index = 1;
+        int min = this.hits[1];
+        for (int i = 1; i < this.hits.length; i++) {
+            if (min > this.hits[i]) {
+                index = i;
+                min = this.hits[i];
+            }
+        }
+
+        assert index > 0 : "negative index! ";
+
+        return index;
+   }
+
+
+14.
+
+   public static int[] sortAsc(int[] a) {
+        boolean flagAsc = false;
+
+        while(!flagAsc) {
+            flagAsc = true;
+
+            for(int i = 0; i < a.length - 1; ++i) {
+                if (a[i] > a[i + 1]) {
+                    flagAsc = false;
+                    a[i] += a[i + 1];
+                    a[i + 1] = a[i] - a[i + 1];
+                    a[i] -= a[i + 1];
+                }
+            }
+        }
+
+        return a;
+    }
+
+//добавим assert перед return с проверкой на null:
+
+    assert a != null;
+    return a;
+    }
+
+15.
+
+ result = resultBuilder.toString();
+     return result;
+
+/добавим assert перед return с проверкой на null:
+
+    assert result != null :" result is null ! ";
+    return result;
