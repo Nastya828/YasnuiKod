@@ -1,0 +1,117 @@
+1.
+
+if (0 <= x && x < field.length && 0 <= y && y < field[0].length && field[x][y] == 0)
+// условие сложно читаемо, можно улучшить с помощью логических переменных:
+   
+boolean FIRST_LINE = 0 <= x && x < field.length;
+boolean SECOND_LINE = 0 <= y && y < field[0].length;
+boolean EMPTY_SELL = field[x][y] == 0;
+
+if(FIRST_LINE && SECOND_LINE && EMPTY_SELL){
+   field[x][y] = day;
+}
+
+2.
+
+if (((field[i][j] == -1) || (field[i][j] == counterDays)) && counterDays >= 1) 
+
+// условие сложно читаемо, можно улучшить с помощью логических переменных:
+boolean negativeSell = (field[i][j] == -1);
+boolean sellOfLast = (field[i][j] == counterDays);
+
+if ((negativeSell || sellOfLast) && counterDays >= 1)
+
+3.
+
+if (index[0] == index[2] || index[1] == index[3])
+// условие  можно улучшить с помощью логических переменных:
+
+boolean compareHeights = index[0] == index[2];
+boolean compareWeights = index[0] == index[2];
+
+if (compareHeights || compareWeights)
+
+4.
+
+double summa = 0.0;
+
+// переменную для нахождения суммы можно сделать целочисленной:
+int summa = 0;
+
+5.
+
+if (i + 1 == stringList.size() || stringBuilder.length() + stringList.get(i + 1).length() > len)
+// условие  можно улучшить с помощью логических переменных:
+
+boolean endName = (i + 1 == stringList.size());
+boolean overLength = (stringBuilder.length() + stringList.get(i + 1).length() > len);
+
+if(endName || overLength) 
+
+6.
+
+int n;
+n = max(strings);
+// добавим проверку на переполнение int:
+
+if(max(strings) < Integer.MAX_VALUE) {
+   n = max(strings);
+}else{
+   n = 0;
+}
+
+7.
+
+matrix1[j][i] = ' ';
+// символ ' ' - повторяется, заменим на символьную константу:
+final char emptySell = ' ';
+
+matrix1[j][i] = emptySell;
+
+
+8.
+
+double x = Math.sqrt(s.length());
+int n = (int) x;
+
+// заменим вещественную переменную на целочисленную:
+int n = (int) Math.sqrt(s.length());
+
+9.
+
+if ((l1 == l2 && s1.compareTo(s2) < 0) || l2 > l1)
+
+// условие  можно улучшить с помощью логических переменных:
+boolean equalsLen = (l1 == l2);
+boolean rightSize = (s1.compareTo(s2) < 0);
+boolean diffForSecond = (l2 > l1); 
+
+if ((equalsLen && rightSize) || diffForSecond)
+
+10.
+
+double p = (max[0] * 100) / summa;
+
+//проверим, что summa != 0:
+
+if(summa != 0){
+   double p = (max[0] * 100) / summa;
+}
+
+11.
+
+double d = 0;
+
+//используется if (d > 50), можно заменить на целочисленную:
+int daysNumber = 0;
+
+12.
+
+double summa = summaArray(Votes);
+
+// метод summaArray возвращает int:
+public static int summaArray(int[] a){
+
+//вместо double используем int
+int sumOfVotes = summaArray(Votes);
+
