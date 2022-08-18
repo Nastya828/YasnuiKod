@@ -1,0 +1,140 @@
+1.
+for (int i = 0; i < oksana.length - 1; i += 2) 
+// шаг цикла равен 2, можно изменить на константу:
+final int STEP_FOR = 2;
+for (int i = 0; i < oksana.length - 1; i += STEP_FOR)
+// константа обозначающая шаг цикла FOR;
+
+2.
+int pathNext = 1;
+// переменная не изменяет значение, всегда 1, изменим на константу:
+final int SIDE_LENGHT = 1;
+// константа обозначающая длину стороны;
+
+3.
+int[] index = new int[4];
+// размер массива задается магическим числом, изменим на константу:
+
+final int WAYS_NUMBERS = 4;
+// константа обозначающая количество путей;
+
+4.
+if (index[0] == index[2] || index[1] == index[3]) 
+// номера ячеек массива для сравнения не изменяются, можно заменить константами:
+
+final int HIGHT_FIRST_LINE = index[0];
+final int HIGHT_SECOND_LINE = index[2];
+// высота первой и второй линий;
+
+final int WEIGTH_FIRST_LINE = index[1];
+final int WEIGTH_SECOND_LINE = index[3];
+// ширина первой и второй линий;
+
+if (HIGHT_FIRST_LINE == HIGHT_SECOND_LINE || WEIGTH_FIRST_LINE == WEIGTH_SECOND_LINE) 
+
+5.
+// Строка " " используется несколько раз:
+
+stringBuilder.append(stringList.get(i)).append(" ");
+
+if (Arrays.asList(stepSecond[i].split(" ")).contains(subs))
+
+//можно заменить строковой константой:
+final String END_OF_NAME = " ";
+
+stringBuilder.append(stringList.get(i)).append(END_OF_NAME);
+
+if (Arrays.asList(stepSecond[i].split(SPASE_IN_NAME)).contains(subs))
+
+6.
+// Символ '0' используется несколько раз:
+while (result.charAt(0) == '0')
+ result = '0';
+//заменим на символьную константу '0';
+
+final char START_NEW_LINE  = '0';
+// символ начала новой линии;
+result = START_NEW_LINE;
+
+7.
+// Число 10 используется несколько раз:
+  while (x != 0) {
+            s += (x % 10) * Math.pow(n, counter);
+            counter++;
+            x /= 10;
+        }
+//используем константу:
+final int DIVIDER_LAST_NUMBER = 10;
+// делитель для взятия последней цифры;
+
+x /= DIVIDER_LAST_NUMBER;
+
+8.
+// Цифры 8 и 16 используются как основания соответствующих систем счисления:
+ if (octal) {
+            n = 8;
+        } else {
+            n = 16;
+        }
+
+// константы:
+final int HEX_FOUNDATION = 16;
+final int OCT_FOUNDATION = 8;
+
+if (octal) {
+            n = OCT_FOUNDATION;
+        } else {
+            n = HEX_FOUNDATION;
+        }
+
+9.
+if (c < 0) {
+    c += 10;
+    x = -1;
+} else {
+    x = 0;
+}
+// Число 10 можно заменить константой
+final int ADD_FOR_NEGATIVE = 10;
+// число, добавляющееся при отрицательном количестве;
+
+if (c < 0) {
+    c += ADD_FOR_NEGATIVE;
+    x = -1;
+} else {
+    x = 0;
+}
+
+10.
+String[] strings = s.split(" ");
+// Строку " " можно заменить константой:
+
+final String STRING_SEPARATOR = " ";
+// символ - разделитель строки
+
+String[] strings = s.split(STRING_SEPARATOR);
+
+11.
+array[i][j] = strings[i].charAt(j) - 48;
+// Число 48 используется для преобразования char в int в цикле, заменим константой:
+
+final int ASCII_ZERO = 48;
+// константа - код 0 в таблице ASCII;
+
+array[i][j] = strings[i].charAt(j) - ASCII_ZERO;
+
+12.
+
+ if (N < 3) {
+    return 0;
+ }
+
+//  Число 3 можно заменить на числовую константу
+
+final int MIN_AMOUNT = 3;
+// минимально необходимое количество
+
+ if (N < MIN_AMOUNT) {
+    return 0;
+ }
+
