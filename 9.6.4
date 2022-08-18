@@ -3,11 +3,11 @@
 if (0 <= x && x < field.length && 0 <= y && y < field[0].length && field[x][y] == 0)
 // условие сложно читаемо, можно улучшить с помощью логических переменных:
    
-boolean FIRST_LINE = 0 <= x && x < field.length;
-boolean SECOND_LINE = 0 <= y && y < field[0].length;
-boolean EMPTY_SELL = field[x][y] == 0;
+boolean firstLine = 0 <= x && x < field.length;
+boolean secondLine = 0 <= y && y < field[0].length;
+boolean emptyCell = field[x][y] == 0;
 
-if(FIRST_LINE && SECOND_LINE && EMPTY_SELL){
+if(firstLine && secondLine && emptyCell){
    field[x][y] = day;
 }
 
@@ -64,9 +64,9 @@ if(max(strings) < Integer.MAX_VALUE) {
 
 matrix1[j][i] = ' ';
 // символ ' ' - повторяется, заменим на символьную константу:
-final char emptySell = ' ';
+final char emptyCell = ' ';
 
-matrix1[j][i] = emptySell;
+matrix1[j][i] = emptyCell;
 
 
 8.
