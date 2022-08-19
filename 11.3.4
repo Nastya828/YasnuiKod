@@ -1,0 +1,296 @@
+1.
+
+public class LinkedList {    
+public Node head;
+    public Node tail;    
+
+// поля класса LinkedList сделаем более закрытыми - default, для использования внутри пакета:
+
+public class LinkedList {
+    protected Node head;
+    protected Node tail;
+
+2.
+
+class Node {
+     protected int value;
+     protected Node next;
+
+// поля класса Node сделаем более закрытыми - protected, для использования внутри пакета 
+// и возможности наследования:
+
+class Node {
+     protected int value;
+     protected Node next;
+   
+
+3.
+
+ public class PowerSet {
+    List<String> powerSet;
+    final public int capacity;
+
+// поля класса можно сделать более закрытыми, private -  виден только внутри класса,
+// default, для использования внутри пакета:
+
+ public class PowerSet {
+    private List<String> powerSet;
+    final int capacity;
+
+4.
+
+public class Level1 {
+    private boolean flagDesc = false;
+
+public  int[] sortDesc(int[] a) {
+        while (!flagDesc) {
+            flagDesc = true;
+
+// переменная flagDesc объявлена как поле класса, используется в методе sortDesc,
+//перенесем ее в метод - минимальная область видимости:
+
+public  int[] sortDesc(int[] a) {
+        boolean flagDesc = false;
+        while (!flagDesc) {
+            flagDesc = true;
+
+5.
+
+public class Level1 {
+    private boolean flagAsc = false;
+
+public  int[] sortAsc(int[] a) {
+        while (!flagAsc) {
+            flagAsc = true;
+
+/ переменная flagAsc объявлена как поле класса, используется только в методе sortAsc,
+//перенесем ее в метод - минимальная область видимости:
+
+public  int[] sortAsc(int[] a) {
+        boolean flagAsc = false;
+        while (!flagAsc) {
+            flagAsc = true;
+
+6.
+
+    public static int[] SynchronizingTables(int N, int[] ids, int[] salary) {
+        int[] idsCopy = new int[ids.length];
+        Map<Integer, Integer> map = new HashMap<>(idsCopy.length);
+        
+        for (int i = 0; i < ids.length; i++) {
+            idsCopy[i] = ids[i];
+        }
+        sortAsc(idsCopy);
+        sortAsc(salary);
+        
+        for (int i = 0; i < N; i++) {
+            map.put(idsCopy[i], salary[i]);
+        }
+
+// переменную map необходимо объявить ближе к ее вызову:
+
+        Map<Integer, Integer> map = new HashMap<>(idsCopy.length);
+        for (int i = 0; i < N; i++) {
+            map.put(idsCopy[i], salary[i]);
+        }
+
+
+7.
+
+public class Level1 {
+    static public int[][] matrix = {
+            {6, 1, 9},
+            {5, 2, 8},
+            {4, 3, 7}
+    };
+ 
+// переменная matrix используется только в классе Level1, можно сделать ее private:
+public class Level1 {
+    static private int[][] matrix = {
+
+
+8. 
+
+public class Level1 {
+	static public int[] index = new int[4];
+
+public static double search(int x, int y) {
+	if (matrix[i][j] == x) {
+            index[0] = i;
+
+// поле класса index используется в методе search, сократим область видимости, объявив ее в методе:
+
+public static double search(int x, int y) {
+	int[] index = new int[4];
+	if (matrix[i][j] == x) {
+            index[0] = i;
+
+9.
+
+public static String PatternUnlock(int N, int[] hits) {
+        DecimalFormat format = (DecimalFormat) NumberFormat.getInstance();
+        DecimalFormatSymbols symbols = format.getDecimalFormatSymbols();
+        char sep = symbols.getDecimalSeparator();
+
+        double summa = 0.0;
+        for (int i = 0; i < N - 1; i++) {
+            double way = search(hits[i], hits[i + 1]);
+            summa += way;
+        }
+
+        StringBuilder str = new StringBuilder();
+        String s = String.format("%.5f", summa);
+        for (char aChar : s.toCharArray()) {
+            if (!(aChar == '0' || aChar == sep)) {
+                str.append(aChar);
+            }
+        }
+
+// между объявлением переменной sep и обращением к ней есть код, необходимо перенести объявление 
+// переменной ближе к обращению:
+
+	char sep = symbols.getDecimalSeparator();
+        for (char aChar : s.toCharArray()) {
+            if (!(aChar == '0' || aChar == sep)) {
+                str.append(aChar);
+            }
+
+10.
+
+	String s1 = null;
+        for (int i = 0; i < stringList.size(); i++) {
+            if (stringList.get(i).length() > len) {
+                s1 = stringList.get(i).substring(0, len);
+
+// переменная s1 используется внутри цикла, необходимо сделать ее объявление там же:
+
+	for (int i = 0; i < stringList.size(); i++) {
+     		if (stringList.get(i).length() > len) {
+     		String s1 = stringList.get(i).substring(0, len);
+	}
+
+11.
+	int m = strings.length;
+            if(max(strings) < Integer.MAX_VALUE) {
+                n = max(strings);
+            }else{
+                n = 0;
+            }
+            matrix1 = new char[n][m];
+            for (int i = 0; i < m; i++) {
+
+// объявление переменной m необходимо перенести ближе к ее вызову:
+
+	    int m = strings.length;
+            matrix1 = new char[n][m];
+            for (int i = 0; i < m; i++) {
+ 
+12.
+
+ public static boolean TankRush(int H1, int W1, String S1, int H2, int W2, String S2) {
+
+        int[][] mapFirst = stringToArray(H1, W1, S1);
+
+        int[][] mapSecond = stringToArray(H2, W2, S2);
+
+        if (H2 == 0 || H2 > H1 || W2 > W1) {
+            return false;
+        }
+
+        for (int i = 0; i < mapFirst.length; i++) {
+            for (int j = 0; j < mapFirst[i].length; j++) {
+                if (mapFirst[i][j] == mapSecond[0][0] && search(i, j, mapFirst, mapSecond)) {
+                    return true;
+                }
+            }
+
+// переменные mapFirst и mapSecond необходимо перенести ближе к вызову:
+	
+	int[][] mapFirst = stringToArray(H1, W1, S1);
+        int[][] mapSecond = stringToArray(H2, W2, S2);
+	for (int i = 0; i < mapFirst.length; i++) {
+            for (int j = 0; j < mapFirst[i].length; j++) {
+                if (mapFirst[i][j] == mapSecond[0][0] && search(i, j, mapFirst, mapSecond)) {
+                    return true;
+                }
+            }
+
+13.
+
+   public static int MaximumDiscount(int N, int[] price) {
+        int sale = 0;
+        if (N < 3) {
+            return 0;
+        }
+        sort(price);
+        
+        for (int i = 2; i < price.length; i += 3) {
+            sale += price[i];
+        }
+        return sale;
+    }
+// объявление переменной sale необходимо перенести ближе к ее вызову:
+
+int sale = 0;
+for (int i = 2; i < price.length; i += 3) {
+            sale += price[i];
+        }
+        return sale;
+    }
+
+
+
+14.
+  	int t, y, e;
+        int[] a = new int[3];
+        for (int i = 0; i < a.length; i++) {
+            a[i] = data[i + x];
+        }
+
+        boolean flag = false;
+        while (!flag && (System.currentTimeMillis() - timeStart) < 500) {
+            flag = true;
+            for (int i = 0; i < a.length - 1; i++) {
+                if (a[i] > a[i + 1]) {
+                    flag = false;
+                    t = a[0];
+                    e = a[1];
+                    y = a[2];
+                    a[0] = y;
+                    a[1] = t;
+                    a[2] = e;
+                }
+            }
+        }
+  
+// объявление переменных t, y, e необходимо перенести ближе к их вызову внутрь цикла -  
+// минимально возможная область видимости для этих переменных:
+
+for (int i = 0; i < a.length - 1; i++) {
+                int t, y, e;
+                if (a[i] > a[i + 1]) {
+                    flag = false;
+                    t = a[0];
+                    e = a[1];
+                    y = a[2];
+                    a[0] = y;
+                    a[1] = t;
+                    a[2] = e;
+                }
+            }
+        }
+
+15.
+
+	Map<String, Integer> map = new TreeMap<>();
+        for (int i = 0, k = 0; i < items.length && k < strings.length - 1; i++, k += 2) {
+            strings[k] = items[i].split(" ")[0];
+            strings[k + 1] = items[i].split(" ")[1];
+        }
+
+        map.put(strings[0], Integer.valueOf(strings[1]));
+
+// объявление переменной map необходимо перенести ближе к ее вызову:
+	Map<String, Integer> map = new TreeMap<>();
+	map.put(strings[0], Integer.valueOf(strings[1]));
+ 
