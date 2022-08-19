@@ -1,0 +1,112 @@
+1.
+
+	int[] hits;
+	for (int i = 0; i < N - 1; i++) {
+            double way = search(hits[i], hits[i + 1]);
+            summa += way;
+        }
+
+// массив hits можно заменить односвязным списком, тогда вызов search будет выглядеть:
+
+	Node n = hits.head;
+        while (n.next != null) {
+	     double way = search(n.value, n.next.value);
+	     summa += way;
+	}
+
+2.
+
+  char[] aChar = s.toCharArray();
+        for (int i = 0; i < aChar.length; i++) {
+            if (!(aChar[i] == '0' || aChar[i] == sep)) {
+                str.append(aChar);
+            }
+        }
+// можно в цикле обойтись без прямой индексации:
+
+  for (char aChar : s.toCharArray()) {
+            if (!(aChar == '0' || aChar == sep)) {
+                str.append(aChar);
+            }
+        }
+
+  
+3.
+
+// В метод передается индекс заданного элемента и считается сумма 
+// всех элементов массив, кроме данного, элементы не повторяются:
+
+  public static int summa(int index, int[] array) {
+        int summa = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (i != index) {
+                summa += array[i];
+            }
+        }
+        return summa;
+    }
+
+// можно передавать в метод summa значение элемента, вместо индекса, при этом 
+// можно в цикле обойтись без прямой индексации массива:
+
+    public static int summa(int element, int[] array) {
+        int summa = 0;
+ 	for (int e : array) {
+            if (e != element) {
+                summa += e;
+            }
+        }
+	return summa;
+    }
+
+4.
+
+	public static int max(String[] a) {
+        int max = a[0].length();
+  	for (int i = 0; i < a.length; i++) {
+            if (a[i].length() >= max) {
+                max = a[i].length();
+            }
+        }
+//для прохождения по массиву строк а не требуется прямой индексации массива:
+
+	public static int max(String[] a) {
+        int max = a[0].length();
+        for (String s : a) {
+            if (s.length() >= max) {
+                max = s.length();
+            }
+        }
+        return max;
+    }
+
+5.
+
+// В качестве аргумента в метод odometer передается массив целых чисел oksana:
+
+public static int odometer(int[] oksana) {
+        int S = 0;
+        for (int i = 0; i < oksana.length - 1; i += 2) {
+            if (i == 0) {
+                S += oksana[i] * oksana[i + 1];
+            } else {
+                S += oksana[i] * (oksana[i + 1] - oksana[i - 1]);
+            }
+        }
+        return S;
+    }
+
+// вместо работы с массивом oksana, можно использовать структуру ArrayList:
+
+public static int odometer1(int[] oksana) {
+        int S = 0;
+        List<Integer> oksanaList = new ArrayList<>(Arrays.stream(oksana).boxed().toList());
+        for (int i = 0; i < oksanaList.size() - 1; i += 2) {
+            if (i == 0) {
+                S += oksanaList.get(i) * oksanaList.get(i + 1);
+            } else {
+                S += oksanaList.get(i) * (oksanaList.get(i + 1) - oksanaList.get(i - 1));
+            }
+        }
+        return S;
+    }
